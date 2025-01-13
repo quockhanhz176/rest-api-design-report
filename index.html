@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Proseminar Web Engineering im Sommersemester 2014 - Store in the Cloud or
+      not in the Cloud
+    </title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Inconsolata:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <header>
+      <h2>Seminar Web Engineering in Winter semester 2024/2025</h2>
+      <h1>REST API Design</h1>
+      <h2 class="author">Georgiy Sinokhchyan</h2>
+      <h2 class="author">Quoc Khanh Le</h2>
+      <h3 class="affiliation">
+        Master Web Engineering<br />
+        Technische Universität Chemnitz<br />
+        Chemnitz, Deutschland
+      </h3>
+    </header>
+    <section>
+      <h2>1. Introduction</h2>
+      <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        In den letzten Jahren hat die Beliebtheit und damit auch das Angebot von
+        Cloud-Diensten stark zugenommen. Die Gründe dafür sind vielseitig, so
+        wirken die steigende Tendenz zur Nutzung mehrerer mobiler Endgeräte,
+        ebenso wie die Mobilität des Arbeitsortes sich positiv auf diesen Trend
+        aus. Zusätzlich vergrößert sich im digitalen Zeitalter der für Medien
+        beanspruchte Speicherplatz rapide.
+      </p>
+    </section>
+    <section>
+      <h2>2. History</h2>
+      <p>(Quoc Khanh Le)</p>
+    </section>
+    <section>
+      <h2>3. REST API Characteristics</h2>
+      <h3>3.1. Elements</h3>
+      <p>(Quoc Khanh Le)</p>
+    </section>
+    <section>
+      <h3>3.2 Constraints</h3>
+      <h4>3.2.1 Client-Server</h4>
+      <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h4>3.2.2 Stateless</h4>
+      <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h4>3.2.3 Uniform interface</h4>
+      <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h4>3.2.5 Layered system</h4>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h4>3.2.6 Code on demand</h4>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h2>4. Design pattern and best practices</h2>
+      <p>(Quoc Khanh Le)</p>
+    </section>
+    <section>
+      <h2>5. REST API's in semantic web domain</h2>
+      <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        Die Vorteile der Nutzung von Cloud Diensten liegt klar auf der Hand: Die
+        Daten sind unabhängig von Standort und Gerät immer abrufbar. Im Falle
+        eines Schadens an der Festplatte oder ähnlichem sind zudem diese Daten
+        nicht verloren. Auch vereinfacht es Projektarbeiten. Doch es gibt immer
+        zwei Seiten einer Medaille und so sollte sich jeder bewusst sein, dass
+        wenn man seine Daten, seien es persönliche, geschäftliche, belanglose
+        oder sensible Daten, online hochlädt und auf fremden Servern speichert,
+        die theoretische Möglichkeit besteht, dass jemand Fremdes sich leichter
+        und unter Umständen unbemerkt Zugriff zu diesen Daten beschaffen kann.
+      </p>
+      <p>
+        Große Anbieter wie Dropbox und Google versprechen viel Leistung, gerade
+        auch in Hinblick auf Sicherheit, aber so zeigte sich besonders im
+        letzten Jahr wie viel hinter den Kulissen geschieht, ausgehend von der
+        Politik und den Geheimdiensten, von dem Anwender nichts mitbekommen. Die
+        besten Verschlüsselungsalgorithmen bei der Übertragung von Daten oder
+        beim Ablegen der selbigen auf den Servern nützen nichts, wenn die
+        Schlüssel von den Firmen selbst verwaltet werden und sie auf Verlangen
+        der Regierung diese herausgeben müssen.
+      </p>
+      <p>
+        Eine Alternative ist sicher die zusätzliche lokale Verschlüsselung, so
+        wie sie Boxcryptor anbietet. Oder auch gänzlich auf das
+        Zwischenspeichern auf Servern zu verzichten und Daten direkt zu
+        Synchronisieren, so wie BitTorrent Sync es vorschlägt. Die Idee sich
+        seine eigene Cloud aufzusetzen erscheint im ersten Moment auch eine
+        interessante Alternative zu sein. Jedoch kann dieser Enthusiasmus
+        schnell verfliegen, denn die Herausforderung diese so sicher wie möglich
+        zu gestalten und den gleichen Service zu bieten wie die Vorbilder, ist
+        doch größer als anfänglich gedacht. Viel Freiheit in Gestaltung und
+        Umsetzung bedeutet in diesem Fall auch sehr viel Verantwortung, welche
+        nur mit Grundkenntnissen kaum erfüllbar ist.
+      </p>
+    </section>
+    <section>
+      <h2>6. Demo</h2>
+      <p>(Quoc Khanh Le)</p>
+    </section>
+    <section class="references">
+      <h2>7. References</h2>
+      <p class="reference" id="r1">
+        [1] R. T. Fielding, “Architectural Styles and the Design of
+        Network-based Software Architectures,” Ph.D. dissertation, Dept.
+        Information and Computer Science, UC Irvine, California, 2000.
+      </p>
+      <p class="reference" id="r2">
+        [2] M. Masse, REST API design rulebook, CA: O’Reilly Media, Inc, 2011.
+      </p>
+      <p class="reference" id="r3">
+        [3] P. Giessler, M. Gebhart, D. Sarancin, R. Steinegger and S. Abeck,
+        "Best Practices for the Design of RESTful Web Services", ICSEA 2015: The
+        Tenth International Conference on Software Engineering Advances Best,
+        pp. 392-397, 2015.
+      </p>
+      <p class="reference" id="r4">
+        [4] R. T. Fielding. “The reason to make a real REST API is to get
+        evolvability.” X. Accessed Dec. 5, 2024. [Online.] Available:
+        <a href="https://x.com/fielding/status/376835835670167552"
+          >https://x.com/fielding/status/376835835670167552</a
+        >
+      </p>
+      <p class="reference" id="r5">
+        [5] B. Mulloy. “Web API Design - Crafting Interfaces that Developers
+        Love.” pages.apigee.com. Accessed: Dec. 5, 2024. [Online.] Available:
+        <a
+          href="https://pages.apigee.com/rs/apigee/images/api-design-ebook-2012-03.pdf"
+          >https://pages.apigee.com/rs/apigee/images/api-design-ebook-2012-03.pdf</a
+        >
+      </p>
+      <p class="reference" id="r6">
+        [6] OWASP. "Testing for Insecure Direct Object References." owasp.org.
+        Accessed: Dec.5, 2024. [Online.] Available:
+        <a
+          href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References"
+          >https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References</a
+        >
+        Testing_for_Insecure_Direct_Object_References
+      </p>
+      <p class="reference" id="r7">
+        [7] S. Vinoski, “RESTful Web Services Development Checklist,” Internet
+        Computing, IEEE, vol. 12, no. 6, 2008, pp. 94–96. [Online]. Available:
+        <a href="https://ieeexplore.ieee.org/document/4670126"
+          >https://ieeexplore.ieee.org/document/4670126</a
+        >
+      </p>
+      <p class="reference" id="r8">
+        [8] HTTP Semantics, STD 97 RFC 9110, June 2022. [Online]. Available:
+        <a href="https://datatracker.ietf.org/doc/html/rfc9110"
+          >https://datatracker.ietf.org/doc/html/rfc9110</a
+        >
+      </p>
+      <p class="reference" id="r9">
+        [9] J. Webber, S. Parastatidis, and I. S. Robinson, REST in Practice -
+        Hypermedia and Systems Architecture. CA: O’Reilly Media, Inc, 2010.
+      </p>
+    </section>
+  </body>
+</html>
