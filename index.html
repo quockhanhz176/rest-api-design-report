@@ -67,6 +67,26 @@
       <h2>3. REST API Characteristics</h2>
       <h3>3.1. Elements</h3>
       <p>(Quoc Khanh Le)</p>
+      <p>
+        REST data elements include the resources, which is the target of the
+        links inside hypermedia; the resource identifiers, such as URI; the
+        resource representations, such as JSON or XML; the representation
+        metadata, such as the HTTP "Content-Type" header; the resource metadata,
+        such as link relations like source link or alternate link; and the
+        control data, such as the HTTP "Accept" header <a href="#r1">[1]</a>.
+      </p>
+      <p>
+        REST connectors include the client and the server connectors, such as
+        the library "libwww"; the caches, such as browser cache or cache server;
+        the resolvers, such as the DNS look up library "Bind9"; and the tunnels,
+        such as those formed by TLS handshakes <a href="#r1">[1]</a>.
+      </p>
+      <p>
+        REST components include the origin servers, such as a Kestrel or IIS
+        server; the gateways, such as a reverse proxy; the proxies, such as a
+        CERN proxy; and the user agents, such as a web browser or a web crawler
+        <a href="#r1">[1]</a>.
+      </p>
     </section>
     <section>
       <h3>3.2 Constraints</h3>
@@ -116,8 +136,31 @@
       </p>
     </section>
     <section>
-      <h4>3.2.3 Uniform interface</h4>
+      <h4>3.2.3 Cache</h4>
       <p>(Georgiy Sinokhchyan)</p>
+      <p>
+        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
+        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
+        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
+        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
+        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
+        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
+        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
+        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
+        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+      </p>
+      <p>
+        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
+        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
+        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
+        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
+        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
+        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+      </p>
+    </section>
+    <section>
+      <h4>3.2.4 Uniform interface</h4>
+      <p>(Quoc Khanh Le)</p>
       <p>
         Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
         kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
