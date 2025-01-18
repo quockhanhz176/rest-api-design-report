@@ -162,23 +162,61 @@
       <h4>3.2.4 Uniform interface</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
-        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
-        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
-        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
-        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
-        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
-        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
-        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
-        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
-        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+        Uniform interface is the major constraint that set the REST api
+        architectural style apart from other network-based api styles
+        <a href="#r1">[1]</a>. It requires that the outward facing interface of
+        a service remains general, which promotes independence between the
+        interface and the implementation of a service <a href="#r1">[1]</a>.
+        This independence allows for decoupled evolvability, but has the
+        drawback of introducing loss of efficiency because the information
+        transfered needs to be in the general, standardized form and not one
+        optimized for the application's needs <a href="#r1">[1]</a>. There are
+        four sub constraints that need to be fulfilled to satisfy the uniform
+        interface constraint: identification of resources, manipulation of
+        resources through representations, self-descriptive messages, and hyper
+        media as the engine of application state <a href="#r1">[1]</a>.
       </p>
       <p>
-        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
-        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
-        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
-        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
-        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
-        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+        Resources are defined by Roy Fielding <a href="#r1">[1]</a> as "any
+        information that can be named": a document/ an image, a time-dependent
+        service, a collection of other resources, an object, etc. A resource, in
+        this sense, is a pointer to a set of entities, and not any specific
+        entity at any point in time <a href="#r1">[1]</a>.
+      </p>
+      <h5>3.2.4.1 Identification of resources</h5>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        A resource identifier uniquely identifies a resource in an interaction
+        between components, and can be used in combination with REST connectors
+        to manipulate the value of the resource, regardless of the backing
+        implementation of this manipulation <a href="#r1">[1]</a>.
+      </p>
+      <h5>3.2.4.2 Manipulation of resources through representations</h5>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        The manipulation of a resource is done through a representation, which
+        is a byte sequence and the metadata that describes those bytes
+        <a href="#r1">[1]</a>. A representation represents the contemporary or
+        targeted state of a resource when being transfered between components
+        <a href="#r1">[1]</a>
+      </p>
+      <h5>3.2.4.3 Self-descriptive messages</h5>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        The self-descriptive messages constraint requires that no states are
+        transfered between requests, in other words, the messages should contain
+        all of the required information to process it, including the semantics
+        indicated through media types and standard methods, cacheability
+        communicated in responses
+        <a href="#r1">[1]</a>.
+      </p>
+      <h5>3.2.4.4 Hypermedia as the engine of application state (HATEOAS)</h5>
+      <p>(Quoc Khanh Le)</p>
+      <p>
+        The core idea of HATEOAS is that the client does not need to have prior
+        knowledge of the API's structure to interract with it. To achieve this,
+        the responses need to contain links to other resources to guide the
+        client to other actions based on the current application state.
       </p>
     </section>
     <section>
