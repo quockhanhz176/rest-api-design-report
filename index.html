@@ -162,8 +162,8 @@
       <h4>3.2.4 Uniform interface</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
-        Uniform interface is the major constraint that set the REST api
-        architectural style apart from other network-based api styles
+        Uniform interface is the major constraint that set the REST API
+        architectural style apart from other network-based API styles
         <a href="#r1">[1]</a>. It requires that the outward facing interface of
         a service remains general, which promotes independence between the
         interface and the implementation of a service <a href="#r1">[1]</a>.
@@ -214,7 +214,7 @@
       <p>(Quoc Khanh Le)</p>
       <p>
         The core idea of HATEOAS is that the client does not need to have prior
-        knowledge of the API's structure to interact with it. To achieve this,
+        knowledge of the APIs structure to interact with it. To achieve this,
         the responses need to contain links to other resources to guide the
         client to other actions based on the current application state.
       </p>
@@ -246,23 +246,19 @@
       <h4>3.2.6 Code on demand</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
-        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
-        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
-        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
-        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
-        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
-        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
-        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
-        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
-        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+        The code on demand constraint allows the server to send executable code
+        to the clients, effectively enabling the extension of client
+        functionality after deployment <a href="#r1">[1]</a>. This capability,
+        nonetheless, reduces the visibility of the interaction, as it can be
+        challenging for an inspector to fully understand all of the effects that
+        executing the code sent from the server will have <a href="#r1">[1]</a>.
       </p>
       <p>
-        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
-        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
-        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
-        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
-        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
-        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+        This constraint is the only optional constraint in REST because APIs
+        following the REST architectural style can choose to implement it or not
+        (or restricting its availability to a range of clients) and
+        therefore only reap the benefits and suffer the drawbacks accordingly
+        <a href="#r1">[1]</a>.
       </p>
     </section>
     <section>
