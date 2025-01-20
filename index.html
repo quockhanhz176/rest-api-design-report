@@ -34,12 +34,22 @@
       <h2>1. Introduction</h2>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
-        In den letzten Jahren hat die Beliebtheit und damit auch das Angebot von
-        Cloud-Diensten stark zugenommen. Die Gründe dafür sind vielseitig, so
-        wirken die steigende Tendenz zur Nutzung mehrerer mobiler Endgeräte,
-        ebenso wie die Mobilität des Arbeitsortes sich positiv auf diesen Trend
-        aus. Zusätzlich vergrößert sich im digitalen Zeitalter der für Medien
-        beanspruchte Speicherplatz rapide.
+        Over the last two decades, REST (Representational State Transfer) has emerged as a pivotal 
+        architectural style for designing web services, largely due to its simplicity, scalability, 
+        and flexibility. Introduced by Roy Fielding in his dissertation in 2000 [1], REST has since 
+        become the backbone of modern web services, enabling seamless interaction between distributed 
+        systems. As the digital ecosystem grows with increasing reliance on mobile devices, microservices,
+        and distributed applications, REST APIs have proven to be a reliable framework for managing 
+        client-server communications.
+      </p>
+      <p>
+        The flexibility of REST APIs stems from its principles of statelessness, 
+        uniform interfaces, and support for hypermedia. These principles, combined with practical 
+        design guidelines like those outlined in Masse's REST API Design Rulebook [2], provide developers 
+        with the tools to create scalable, secure, and evolvable APIs. However, designing robust 
+        REST APIs involves more than adherence to principles—it requires careful consideration 
+        of best practices, patterns, and emerging challenges in fields like the semantic web and 
+        data security.
       </p>
     </section>
     <section>
@@ -93,69 +103,60 @@
       <h4>3.2.1 Client-Server</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
-        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
-        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
-        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
-        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
-        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
-        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
-        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
-        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
-        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
-      </p>
-      <p>
-        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
-        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
-        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
-        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
-        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
-        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+        The client-server paradigm is one of the fundamental principles of REST. 
+        By separating the user interface (client) from data storage and processing (server), 
+        REST enables modularity and independent scalability [1]. This separation ensures that 
+        clients can evolve without affecting servers and vice versa, fostering flexibility in 
+        development and maintenance.
+      <ol>
+        <li>Decoupled Evolution: Clients and servers can independently upgrade or change without breaking compatibility.</li>
+        <li>Scalability: Multiple clients can interact with the server concurrently.</li>
+        <li>Security: By centralizing data storage, servers can enforce consistent security protocols.</li>
+      </ol>
       </p>
     </section>
     <section>
       <h4>3.2.2 Stateless</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
-        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
-        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
-        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
-        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
-        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
-        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
-        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
-        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
-        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+        Statelessness, another cornerstone of REST, requires each request from the client 
+        to contain all necessary information for processing [1]. This design eliminates the need 
+        for the server to maintain session state, simplifying server-side operations and improving 
+        scalability.
       </p>
       <p>
-        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
-        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
-        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
-        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
-        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
-        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+        However, implementing statelessness comes with challenges. 
+        While it reduces server load and enhances fault tolerance, developers must ensure 
+        that each request carries sufficient metadata for processing. 
+        For instance, secure session tokens are often used to handle authentication, 
+        aligning with OWASP guidelines for web application security [6].
+      </p>
+      <p>
+        Advantages of Statelessness:
+        <ol>
+          <li>Fault Tolerance: Servers can recover from failures without losing session data.</li>
+          <li>Scalability: Stateless APIs distribute load evenly across server clusters.</li>
+          <li>Simplified Maintenance: Stateless systems are easier to debug and update.</li>
+        </ol>
       </p>
     </section>
     <section>
       <h4>3.2.3 Cache</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
-        Wer dennoch lieber eine Cloud zur Hand haben und trotzdem auf einen
-        kommerziellen Anbieter verzichten möchte, hat die Möglichkeit mit
-        ownCloud sich selber eine Cloud aufzusetzen. Zuerst vorgestellt in 2011,
-        erfreut sich diese Software heute recht großer Beliebtheit. Nach eigenen
-        Angaben nutzen mehr als 1,3 Millionen Anwender diesen Service
-        <a href="#r10">[10]</a>. Und tatsächlich finden sich zahlreiche
-        Anleitungen im Internet, wie man sich zu Hause mit Hilfe eines Raspberry
-        Pis und ownCloud selber eine Cloud basteln kann <a href="#r12">[12]</a>
-        <a href="#r9">[9]</a> <a href="#r5">[5]</a>.
+        The uniform interface principle ensures consistency in how clients interact with resources [1]. REST achieves this through:
       </p>
       <p>
-        Die Vorteile sind schnell zusammengefasst: Erstens orientiert sich die
-        Speicherkapazität, ebenso wie bei BitTorrent Sync, an den eigenen
-        Gegebenheiten. Der Vorteil gegenüber dem Konzept von BitTorrent Sync ist
-        allerdings, dass durch die Zwischenspeicherung der Daten, kein anderes
-        Gerät als das auf dem die Daten gewollt sind online sein muss. Vor allem
-        aber ist der Ort der gespeicherten Daten selbst bestimmt.
+        The key elements of a uniform interface are:
+        <ol>
+          <li>Resource Identification: Each resource is identified by a unique URI.</li>
+          <li>HTTP Methods: Operations like GET, POST, PUT, and DELETE are standardized.</li>
+          <li>Self-Descriptive Messages: Requests and responses include sufficient metadata (e.g., content type).</li>
+          <li>Hypermedia as the Engine of Application State (HATEOAS): Links guide clients to related resources dynamically.</li>
+        </ol>
+      </p>
+      <p>
+        According to Fielding, a uniform interface enhances evolvability by decoupling client and server implementations [4]. For example, APIs designed for e-commerce platforms utilize URIs like /products/{id} to access product data. Such APIs provide predictable and extensible interactions, minimizing developer overhead.
       </p>
     </section>
     <section>
@@ -408,39 +409,18 @@
       <h2>5. REST API's in semantic web domain</h2>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
-        Die Vorteile der Nutzung von Cloud Diensten liegt klar auf der Hand: Die
-        Daten sind unabhängig von Standort und Gerät immer abrufbar. Im Falle
-        eines Schadens an der Festplatte oder ähnlichem sind zudem diese Daten
-        nicht verloren. Auch vereinfacht es Projektarbeiten. Doch es gibt immer
-        zwei Seiten einer Medaille und so sollte sich jeder bewusst sein, dass
-        wenn man seine Daten, seien es persönliche, geschäftliche, belanglose
-        oder sensible Daten, online hochlädt und auf fremden Servern speichert,
-        die theoretische Möglichkeit besteht, dass jemand Fremdes sich leichter
-        und unter Umständen unbemerkt Zugriff zu diesen Daten beschaffen kann.
+        REST APIs have become integral to the semantic web, enabling data integration and accessibility. By leveraging formats like JSON-LD and RDF, REST APIs support interoperability across diverse systems [9]. The use of hypermedia (HATEOAS) further enhances the semantic web by enabling dynamic discovery of linked resources [3].
       </p>
       <p>
-        Große Anbieter wie Dropbox und Google versprechen viel Leistung, gerade
-        auch in Hinblick auf Sicherheit, aber so zeigte sich besonders im
-        letzten Jahr wie viel hinter den Kulissen geschieht, ausgehend von der
-        Politik und den Geheimdiensten, von dem Anwender nichts mitbekommen. Die
-        besten Verschlüsselungsalgorithmen bei der Übertragung von Daten oder
-        beim Ablegen der selbigen auf den Servern nützen nichts, wenn die
-        Schlüssel von den Firmen selbst verwaltet werden und sie auf Verlangen
-        der Regierung diese herausgeben müssen.
+        Key Challenges in Semantic Web API Design:
       </p>
       <p>
-        Eine Alternative ist sicher die zusätzliche lokale Verschlüsselung, so
-        wie sie Boxcryptor anbietet. Oder auch gänzlich auf das
-        Zwischenspeichern auf Servern zu verzichten und Daten direkt zu
-        Synchronisieren, so wie BitTorrent Sync es vorschlägt. Die Idee sich
-        seine eigene Cloud aufzusetzen erscheint im ersten Moment auch eine
-        interessante Alternative zu sein. Jedoch kann dieser Enthusiasmus
-        schnell verfliegen, denn die Herausforderung diese so sicher wie möglich
-        zu gestalten und den gleichen Service zu bieten wie die Vorbilder, ist
-        doch größer als anfänglich gedacht. Viel Freiheit in Gestaltung und
-        Umsetzung bedeutet in diesem Fall auch sehr viel Verantwortung, welche
-        nur mit Grundkenntnissen kaum erfüllbar ist.
-      </p>
+       <ol>
+         <li>Data Standards: Adopting formats that balance human readability and machine processing.</li>
+         <li>Extensibility: Designing APIs to accommodate future requirements without disrupting existing clients.</li>
+         <li>Dynamic Interactions: Utilizing hypermedia for seamless client navigation and resource exploration [9].</li>
+       </ol>
+      </p>    
     </section>
     <section>
       <h2>6. Demo</h2>
