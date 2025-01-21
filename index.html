@@ -262,8 +262,56 @@
       </p>
     </section>
     <section>
-      <h2>4. Design pattern and best practices</h2>
+      <h2>4. Design patterns and best practices</h2>
+      <h3>4.1 No versioning</h3>
       <p>(Quoc Khanh Le)</p>
+      <p>*needs further modification</p>
+      <p>
+        Thanks to hypermedia, REST api do not need to be versioned
+        <a href="#3">[3]</a>.
+      </p>
+    </section>
+    <section>
+      <h3>4.2 Description of resources</h3>
+      <p>
+        Nouns should be used for resource names <a href="#3">[3]</a
+        ><a href="#5">[5]</a>, as they are resources to be accessed and
+        manipulated, and not actions to be performed. Instead, in case of HTTP
+        API, HTTP verbs should be used to indicate the intentions of the clients
+        <a href="#5">[5]</a>.
+      </p>
+      <p>
+        Avoid mixing plurals and singulars when naming resources to maintain
+        consistency and predictability <a href="#3">[3]</a>
+      </p>
+      <p>
+        JavaScript naming convention should be used <a href="#5">[5]</a> since
+        JSON is presently the most used data format for client server connection
+        <a href="#3">[3]</a>.
+      </p>
+      <p>
+        Names of resources should be specific to assist client developers in API
+        comprehension and utilisation <a href="#5">[5]</a>. For example, the
+        relative endpoints should be /blogs, /videos, /news, etc. rather than
+        /items <a href="#5">[5]</a>.
+      </p>
+    </section>
+    <section>
+      <h3>4.3 Identification of resources</h3>
+      <p>
+        URI should be self explanatory to the best of its ability
+        <a href="#5">[5]</a>.
+      </p>
+      <p>
+        There should be generally 2 base URLs for accessing every resource: one
+        for the list and the other for a specific item in the list (for example,
+        /books and /books/393) <a href="#5">[5]</a>.
+      </p>
+      <p>
+        In case there are no security measures in place, the URIs should not
+        reference the resource directly
+        <a href="#3">[3]</a><a href="#6">[6]</a>.
+      </p>
     </section>
     <section>
       <h2>5. REST API's in semantic web domain</h2>
