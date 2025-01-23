@@ -513,8 +513,216 @@ a<!DOCTYPE html>
       </p>
     </section>
     <section>
-      <h2>6. Demo</h2>
+      <h2>6. Demonstration</h2>
       <p>(Quoc Khanh Le)</p>
+      <p>
+        The purpose of the demonstration project is to create an example REST
+        API that is HATEOAS comliant and incorporate into its interface some of
+        the best practices mentioned above.
+      </p>
+      <p>
+        The project is created using .NET Core 8.0. Figure 6.1 is the Swagger
+        interface shown when it's being run in debug mode (which enables Swagger
+        UI).
+      </p>
+      <figure>
+        <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
+        <figcaption>Figure 6.1: Endpoints produced by Swagger</figcaption>
+      </figure>
+      <p>
+        The figure 6.1 shows a lot of endpoints, but theoretically, thanks to
+        HATEOAS, the only one the consumers of the API need to know is the root
+        endpoint "/v1", from which they can explore other enpoints available.
+        This exploration pattern bears some resemblance to how a website user
+        can theoretically explore the entire website starting from the home
+        page. By querying the root endpoint, the user can receive back the
+        response:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 21:37:03 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata",
+  "value": [
+    {
+      "name": "Groups",
+      "kind": "EntitySet",
+      "url": "Groups"
+    },
+    {
+      "name": "Students",
+      "kind": "EntitySet",
+      "url": "Students"
+    }
+  ]
+}
+      </pre>
+      <p>
+        This response contains the "@odata.context" link "/v1/$metadata" to the
+        machine readable metadata resource that explains the Group and Student
+        entity set. It also contains the links to these 2 resources. The user
+        can then send a request to either of those links to retrieve the
+        representation of the resource, which is in this case, a list. For
+        example, they can send a GET request to "/Groups" and get back the list
+        of groups:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 21:37:59 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Groups",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003579)",
+      "@odata.editLink": "Groups(1923003579)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003579,
+      "Name": "Group 1",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003579)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003579)/
+        Students"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003576)",
+      "@odata.editLink": "Groups(1923003576)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003576,
+      "Name": "Group two",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003576)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003576)/
+        Students"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003551)",
+      "@odata.editLink": "Groups(1923003551)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003551,
+      "Name": "373737",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003551)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003551)/
+        Students"
+    }
+  ]
+}
+      </pre>
+      <p>
+        Inside this response, the user can find the same "@odata.context" link
+        but with the "Groups" fragment pointing to the Groups specification (in
+        the EntitySet with the same name) inside the metadata resource
+        representation. The other part of the response, the value directory
+        contains the list of Group, each with their own various links, including
+        the "@odata.type" link that specifies the data model, or the "@odata.id"
+        link that points to itself, etc. The user can then choose to find the
+        students in a specific group (for example, the group with the name
+        "Group 1" and the id "") by following the
+        "Students@odata.navigationLink" (which in this case is
+        "http://localhost:5139/v1/Groups(1923003579)/Students"):
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:03:09 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+      "@odata.editLink": "Students(2342506579)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506579,
+      "FirstName": "Mike",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1992-12-01",
+      "Email": "mt@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506579)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506579)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506576)",
+      "@odata.editLink": "Students(2342506576)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506576,
+      "FirstName": "James",
+      "LastName": "Smith",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "0502-12-01",
+      "Email": "js@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506576)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506576)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506582)",
+      "@odata.editLink": "Students(2342506582)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506582,
+      "FirstName": "A",
+      "LastName": "B",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1999-08-31",
+      "Email": "ab@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506582)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506582)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506583)",
+      "@odata.editLink": "Students(2342506583)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506583,
+      "FirstName": "Fax",
+      "LastName": "Machine",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "2001-03-21",
+      "Email": "fm@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506583)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506583)/
+        Group"
+    }
+  ]
+}
+      </pre>
     </section>
     <section>
       <h2>7. Сonclusion</h2>
