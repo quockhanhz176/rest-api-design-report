@@ -1,0 +1,39 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <script src="chrome-extension://fjnbnpbmkenffdnngjfgmeleoegfcffe/static/js/contentInt.js" />
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="demo_project.Models">
+            <EntityType Name="Group">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.Int64" Nullable="false" />
+                <Property Name="Name" Type="Edm.String" Nullable="false" />
+                <NavigationProperty Name="Students" Type="Collection(demo_project.Models.Student)" />
+            </EntityType>
+            <EntityType Name="Student">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.Int64" Nullable="false" />
+                <Property Name="FirstName" Type="Edm.String" />
+                <Property Name="LastName" Type="Edm.String" />
+                <Property Name="DateOfBirth" Type="Edm.Date" />
+                <Property Name="Email" Type="Edm.String" />
+                <Property Name="GroupId" Type="Edm.Int64" />
+                <NavigationProperty Name="Group" Type="demo_project.Models.Group">
+                    <ReferentialConstraint Property="GroupId" ReferencedProperty="Id" />
+                </NavigationProperty>
+            </EntityType>
+        </Schema>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Default">
+            <EntityContainer Name="Container">
+                <EntitySet Name="Groups" EntityType="demo_project.Models.Group">
+                    <NavigationPropertyBinding Path="Students" Target="Students" />
+                </EntitySet>
+                <EntitySet Name="Students" EntityType="demo_project.Models.Student">
+                    <NavigationPropertyBinding Path="Group" Target="Groups" />
+                </EntitySet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
