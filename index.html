@@ -32,7 +32,7 @@
     </header>
     <section>
       <h2>1. Introduction</h2>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         Over the last two decades, REST (Representational State Transfer) has emerged as a pivotal 
         architectural style for designing web services, largely due to its simplicity, scalability, 
@@ -68,18 +68,11 @@
         of alternative architectural styles, such as GraphQL and gRPC, presents competitive options that 
         challenge REST to continuously evolve and adapt to modern requirements.
       </p>
-      <p>
-        In conclusion, REST remains a fundamental architectural style that underpins the majority of web 
-        services in use today <a href="#r1">[1]</a>. Its enduring relevance is driven by its ability to balance simplicity with 
-        scalability, and flexibility with reliability <a href="#r2">[2]</a>. To continue thriving in a rapidly changing 
-        technological landscape, REST API design must embrace innovation while staying true to the 
-        core principles that have made it an enduring standard in web engineering <a href="#r3">[3]</a>.
-      </p>
     </section>
     <section>
       <h2>2. REST API Constraints</h2>
       <h4>2.1 Client-Server</h4>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         The client-server paradigm remains a foundational principle of REST architecture, ensuring robust 
         modularity and scalability by clearly delineating responsibilities between clients and servers <a href="#r1">[1]</a>. 
@@ -114,7 +107,7 @@
     </section>
     <section>
       <h4>2.2 Stateless</h4>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         Statelessness is a cornerstone of the REST architectural style, mandating that each client 
         request carries all the necessary information required for its processing, without reliance 
@@ -144,7 +137,7 @@
     </section>
     <section>
       <h4>2.3 Cache</h4>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         Caching serves as a vital optimization technique in RESTful systems, aimed at improving performance, 
         reducing latency, and alleviating server load. By temporarily storing server responses, caching 
@@ -183,7 +176,7 @@
     </section>
     <section>
       <h4>2.4 Uniform interface</h4>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         Uniform interface is the major constraint that set the REST API
         architectural style apart from other network-based API styles
@@ -207,7 +200,7 @@
         entity at any point in time <a href="#r1">[1]</a>.
       </p>
       <h5>2.4.1 Identification of resources</h5>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         A resource identifier uniquely identifies a resource in an interaction
         between components, and can be used in combination with REST connectors
@@ -215,7 +208,7 @@
         implementation of this manipulation <a href="#r1">[1]</a>.
       </p>
       <h5>2.4.2 Manipulation of resources through representations</h5>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The manipulation of a resource is done through a representation, which
         is a byte sequence and the metadata that describes those bytes
@@ -224,7 +217,7 @@
         <a href="#r1">[1]</a>
       </p>
       <h5>2.4.3 Self-descriptive messages</h5>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The self-descriptive messages constraint requires that no states are
         transferred between requests, in other words, the messages should
@@ -234,7 +227,7 @@
         <a href="#r1">[1]</a>.
       </p>
       <h5>2.4.4 Hypermedia as the engine of application state (HATEOAS)</h5>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The core idea of HATEOAS is that the client does not need to have prior
         knowledge of the APIs structure to interact with it. To achieve this,
@@ -244,7 +237,7 @@
     </section>
     <section>
       <h4>2.5 Layered system</h4>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The layered system constraint requires the components to only know of
         their immediate neighboring components, which promotes inter-layer
@@ -267,7 +260,7 @@
     </section>
     <section>
       <h4>2.6 Code on demand</h4>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The code on demand constraint allows the server to send executable code
         to the clients, effectively enabling the extension of client
@@ -286,7 +279,7 @@
     </section>
     <section>
       <h2>3. Design patterns and best practices</h2>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <h3>3.1 Versioning</h3>
       <p>
         Whether or not one should version their REST APIs is still a heavily
@@ -439,7 +432,7 @@
     </section>
     <section>
       <h2>4. REST API's in semantic web domain</h2>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         REST APIs are integral to the functionality of the semantic web, acting as a bridge that enables 
         seamless integration and accessibility of data across diverse systems <a href="#r1">[1]</a>. By utilizing data 
@@ -473,7 +466,7 @@
     </section>
     <section>
       <h2>5. Demonstration</h2>
-      <p>(Quoc Khanh Le)</p>
+      <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The purpose of the demonstration project is to create an example REST
         API that is HATEOAS compliant and incorporate into its interface some of
@@ -593,10 +586,8 @@ OData-Version: 4.0
         "@odata.id" link that points to the group, the "@odata.editLink" link
         (which is the same link as the "@odata.id" link) that can be used to
         edit or delete the group (using the PUT and DELETE methods
-        respectively), the "Students@odata.associationLink" link used to
-        associate or disassociate a group with a student, and the
-        "Students@odata.navigationLink" link used to get the list of students
-        belonging to the group. Following that last link, the user can get the
+        respectively), the "Students@odata.navigationLink" link used to get the list of students
+        belonging to the group, etc. Following that last link, the user can get the
         response:
       </p>
       <pre>
@@ -836,7 +827,7 @@ Server: Kestrel</pre
     </section>
     <section>
       <h2>6. Сonclusion</h2>
-      <p>(Georgiy Sinokhchyan)</p>
+      <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         REST API design has emerged as a fundamental paradigm for building scalable, maintainable, 
         and flexible web services. Its core principles, including statelessness, client-server separation, 
