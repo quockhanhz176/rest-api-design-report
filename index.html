@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html>
   <head>
     <title>
@@ -326,52 +326,62 @@
     </section>
     <section>
       <h2>4. Design patterns and best practices</h2>
-      <h3>4.1 No versioning</h3>
       <p>(Quoc Khanh Le)</p>
-      <p>*needs further modification</p>
+      <h3>4.1 Versioning</h3>
       <p>
-        Thanks to hypermedia, REST api do not need to be versioned
-        <a href="#3">[3]</a>.
+        Whether or not one should version their REST APIs is still a heavily
+        debated topic in the developer community as of today
+        <a href="#r10">[10]</a>. Some sources, such as <a href="#r3">[3]</a>,
+        argue that REST APIs don't need versioning thanks to hypermedia. Roy
+        Fielding also agreed with this sentiment, claiming versioning to be an
+        anti-customer practice <a href="#r4">[4]</a>.
+      </p>
+      <p>
+        B. Mulloy <a href="#r5">[5]</a>, on the other hand, believes that
+        developers should "never release an API without a version and make the
+        version mandatory". He also recommends prefixing every version with a
+        "v", moving it to the left most of the URL path (e.g. /v2/books) and
+        maintaining at least one version back <a href="#r5">[5]</a>.
       </p>
     </section>
     <section>
       <h3>4.2 Description of resources</h3>
       <p>
-        Nouns should be used for resource names <a href="#3">[3]</a>,
-        <a href="#5">[5]</a>, as they represent resources to be accessed and
+        Nouns should be used for resource names <a href="#r3">[3]</a>,
+        <a href="#r5">[5]</a>, as they represent resources to be accessed and
         manipulated, rather than actions to be performed. Instead, in the
         context of HTTP APIs, HTTP verbs should be used to indicate the
-        intentions of the clients <a href="#5">[5]</a>.
+        intentions of the clients <a href="#r5">[5]</a>.
       </p>
       <p>
         To ensure consistency and predictability, plural and singular forms
-        should not be mixed when naming resources <a href="#3">[3]</a>
+        should not be mixed when naming resources <a href="#r3">[3]</a>
       </p>
       <p>
         Adhering to JavaScript naming conventions is recommended
-        <a href="#5">[5]</a> since JSON is currently the most used data format
-        for transferring data between clients and servers <a href="#3">[3]</a>.
+        <a href="#r5">[5]</a> since JSON is currently the most used data format
+        for transferring data between clients and servers <a href="#r3">[3]</a>.
       </p>
       <p>
         Names of resources should be specific to aid client developers in API
-        comprehension and utilisation <a href="#5">[5]</a>. For example,
+        comprehension and utilisation <a href="#r5">[5]</a>. For example,
         descriptive endpoints such as /blogs, /videos, /news, etc. are
-        preferable to generic one such as /items <a href="#5">[5]</a>.
+        preferable to generic one such as /items <a href="#r5">[5]</a>.
       </p>
     </section>
     <section>
       <h3>4.3 Identification of resources</h3>
       <p>
         URI should be self explanatory to the best of its ability
-        <a href="#5">[5]</a>. For every resource, there should be generally 2
+        <a href="#r5">[5]</a>. For every resource, there should be generally 2
         base URLs: one for accessing/manipulating the list and the other for
         accessing/manipulating a specific item in the list (for example, /books
-        and /books/393) <a href="#5">[5]</a>.
+        and /books/393) <a href="#r5">[5]</a>.
       </p>
       <p>
         In case there are no security measures in place, the URIs should not
         reference the resource directly
-        <a href="#3">[3]</a>, <a href="#6">[6]</a>.
+        <a href="#r3">[3]</a>, <a href="#r6">[6]</a>.
       </p>
     </section>
     <section>
@@ -380,13 +390,13 @@
         The number of HTTP status codes produced by the API should be limited to
         8 or lower to alleviate client developers' cognitive load and allow them
         to focus on the implementation of functionalities
-        <a href="#5">[5]</a>. The use of HTTP status codes also should align
+        <a href="#r5">[5]</a>. The use of HTTP status codes also should align
         with the guidelines outlined in the HTTP specification
-        <a href="#7">[7]</a>, <a href="#8">[8]</a>.
+        <a href="#r7">[7]</a>, <a href="#r8">[8]</a>.
       </p>
       <p>
         Error messages returned from the API should be verbose
-        <a href="#5">[5]</a>. B. Mulloy. <a href="#5">[5]</a> recommends
+        <a href="#r5">[5]</a>. B. Mulloy <a href="#r5">[5]</a> recommends
         returning a message for the developer detailing how to fix the error, a
         message for the end user to be displayed, an application error code for
         code handling and a link to further explanation of the error. For
@@ -408,7 +418,7 @@
       <h3>4.5 Parameter usage</h3>
       <p>
         Parameters should be used for filtering, sorting, selecting and paging
-        of resources <a href="#3">[3]</a>. Followed are some examples:
+        of resources <a href="#r3">[3]</a>. Followed are some examples:
       </p>
       <pre>
 
@@ -426,45 +436,45 @@
       <h3>4.6 Interaction with resources</h3>
       <p>
         HTTP methods should conform with their semantics as defined by the HTTP
-        specification <a href="#5">[5]</a>, <a href="#8">[8]</a>. Generally,
+        specification <a href="#r5">[5]</a>, <a href="#r8">[8]</a>. Generally,
         POST, GET, PUT, and DELETE should be used to perform the CRUD actions
         (Create, Read, Update, Delete) in that respective order
-        <a href="#8">[8]</a>.
+        <a href="#r8">[8]</a>.
       </p>
       <p>
         For any resource, if the list of methods allowed is not made available
         to the consumers, the HTTP OPTIONS verb should be supported to avoid the
         transmission of high-volume data when a client tries to use an
-        unsupported verb <a href="#3">[3]</a>.
+        unsupported verb <a href="#r3">[3]</a>.
       </p>
       <p>
         To leverage caching, conditional GET should be implemented
-        <a href="#7">[7]</a>. HTTP has 2 built-in mechanisms for this purpose:
+        <a href="#r7">[7]</a>. HTTP has 2 built-in mechanisms for this purpose:
         the header pairs "Last-Modified"/"If-Modified-Since" and
         "Etag"/"If-None-Match", with the latter avoiding the "one-second window"
-        change problem of the former <a href="#7">[7]</a>. Specifically, due to
+        change problem of the former <a href="#r7">[7]</a>. Specifically, due to
         the one-second granularity of the "If-Modified-Since" header, when 2
         changes occur within one second, the clients that have cached the first
-        representation cannot detect the second change <a href="#7">[7]</a>.
+        representation cannot detect the second change <a href="#r7">[7]</a>.
       </p>
     </section>
     <section>
       <h3>4.7 Support mime types</h3>
       <p>
-        B. Mulloy. <a href="#5">[5]</a> suggested that at least 2 MIME types
+        B. Mulloy <a href="#r5">[5]</a> suggests that at least 2 MIME types
         should be supported, especially when receiving data. Among them, the
         default representation format should be JSON because it's more universal
-        and less verbose than XML <a href="#5">[5]</a>.
+        and less verbose than XML <a href="#r5">[5]</a>.
       </p>
       <p>
         To accommodate hypermedia, existing MIME types such as Collection+JSON
-        or HAL+XML are recommended <a href="#3">[3]</a>.
+        or HAL+XML are recommended <a href="#r3">[3]</a>.
       </p>
       <p>
         The API should also support content negotiation, typically through the
         use of the HTTP header "Accept" to indicate the MIME types and,
         optionally, the preference or weight of each option
-        <a href="#3">[3]</a>.
+        <a href="#r3">[3]</a>.
       </p>
     </section>
     <section>
@@ -502,8 +512,367 @@
       </p>
     </section>
     <section>
-      <h2>6. Demo</h2>
+      <h2>6. Demonstration</h2>
       <p>(Quoc Khanh Le)</p>
+      <p>
+        The purpose of the demonstration project is to create an example REST
+        API that is HATEOAS compliant and incorporate into its interface some of
+        the best practices discussed earlier.
+      </p>
+      <p>
+        The project is created using .NET Core 8.0 and uses the Odata protocol
+        to deliver hypermedia for responses. Figure 6.1 shows the Swagger
+        interface when the project is run in debug mode (which enables Swagger
+        UI).
+      </p>
+      <figure>
+        <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
+        <figcaption>Figure 6.1: Endpoints produced by Swagger</figcaption>
+      </figure>
+      <h3>6.1. The demo API</h3>
+      <p>
+        The Swagger interface(figure 6.1) displays multiple endpoints; however,
+        theoretically, thanks to HATEOAS, the only endpoint the consumers of the
+        API need to know is the root endpoint "/v1", from which others can be
+        discovered. This exploration pattern is similar to how a web user can
+        theoretically explore an entire website by just starting from the home
+        page.
+      </p>
+      <p>
+        When querying the root endpoint, the following response is returned:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 21:37:03 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata",
+  "value": [
+    {
+      "name": "Groups",
+      "kind": "EntitySet",
+      "url": "Groups"
+    },
+    {
+      "name": "Students",
+      "kind": "EntitySet",
+      "url": "Students"
+    }
+  ]
+}</pre
+      >
+      <p>
+        This response contains the "@odata.context" link "/v1/$metadata" to the
+        machine readable metadata resource describing the Group and Student
+        entity set and the links to access these resources. The user can then,
+        for example, send a GET request to the "Groups" link to retrieve the
+        list of groups:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 21:37:59 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Groups",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003579)",
+      "@odata.editLink": "Groups(1923003579)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003579,
+      "Name": "Group 1",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003579)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003579)/
+        Students"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003576)",
+      "@odata.editLink": "Groups(1923003576)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003576,
+      "Name": "Group two",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003576)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003576)/
+        Students"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Group",
+      "@odata.id": "http://localhost:5139/v1/Groups(1923003551)",
+      "@odata.editLink": "Groups(1923003551)",
+      "Id@odata.type": "#Int64",
+      "Id": 1923003551,
+      "Name": "373737",
+      "Students@odata.associationLink": "http://localhost:5139/v1/Groups(1923003551)/
+        Students/$ref",
+      "Students@odata.navigationLink": "http://localhost:5139/v1/Groups(1923003551)/
+        Students"
+    }
+  ]
+}</pre
+      >
+      <p>
+        Inside this response, the user can find the same "@odata.context" link
+        but with the "Groups" fragment pointing to the Groups specification (in
+        the EntitySet with the same name) inside the metadata resource
+        representation. The other part of the response, the "value" directory
+        contains the list of Group, each with their own various links: the
+        "@odata.id" link that points to the group, the "@odata.editLink" link
+        (which is the same link as the "@odata.id" link) that can be used to
+        edit or delete the group (using the PUT and DELETE methods
+        respectively), the "Students@odata.associationLink" link used to
+        associate or disassociate a group with a student, and the
+        "Students@odata.navigationLink" link used to get the list of students
+        belonging to the group. Following that last link, the user can get the
+        response:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:03:09 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+      "@odata.editLink": "Students(2342506579)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506579,
+      "FirstName": "Mike",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1992-12-01",
+      "Email": "mt@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506579)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506579)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506576)",
+      "@odata.editLink": "Students(2342506576)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506576,
+      "FirstName": "James",
+      "LastName": "Smith",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "0502-12-01",
+      "Email": "js@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506576)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506576)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506582)",
+      "@odata.editLink": "Students(2342506582)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506582,
+      "FirstName": "A",
+      "LastName": "B",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1999-08-31",
+      "Email": "ab@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506582)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506582)/
+        Group"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506583)",
+      "@odata.editLink": "Students(2342506583)",
+      "Id@odata.type": "#Int64",
+      "Id": 2342506583,
+      "FirstName": "Fax",
+      "LastName": "Machine",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "2001-03-21",
+      "Email": "fm@random-tu.de",
+      "GroupId@odata.type": "#Int64",
+      "GroupId": 1923003579,
+      "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506583)/
+        Group/$ref",
+      "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506583)/
+        Group"
+    }
+  ]
+}</pre
+      >
+      <p>
+        In this response, for each student, aside from the basic information
+        like first and last names, date of birth, email, etc., there is also the
+        set of links seen in the list of Group response. At this point, the user
+        can choose to view only the first Student using the "@odata.id" link and
+        get back following response, which is a sub-section of the previous one:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:11:03 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students/$entity",
+  "@odata.type": "#demo_project.Models.Student",
+  "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+  "@odata.editLink": "Students(2342506579)",
+  "Id@odata.type": "#Int64",
+  "Id": 2342506579,
+  "FirstName": "Mike",
+  "LastName": "Tailor",
+  "DateOfBirth@odata.type": "#Date",
+  "DateOfBirth": "1992-12-01",
+  "Email": "mt@random-tu.de",
+  "GroupId@odata.type": "#Int64",
+  "GroupId": 1923003579,
+  "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506579)
+    /Group/$ref",
+  "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506579)
+    /Group"
+}</pre
+      >
+      <p>
+        As demonstrated above, by just starting from the initial URL, an API
+        consumer has the ability to explore the entire structure of the API
+        using hypermedia.
+      </p>
+      <p>
+        Please note that, to receive the API responses with the full hypermedia,
+        the following header is needed in each request:
+      </p>
+      <pre>Accept: application/json;odata.metadata=full</pre>
+      <h3>6.2. Design patterns and best practices</h3>
+      <p>
+        The demo project uses some of the best practices mentioned, such as
+        adding a "v1" version identifier to the root URI; using specific,
+        plural, self-explanatory nouns for resources (Groups and Students);
+        having 2 base URLS for each of them (e.g. "/v1/Groups" and
+        "/v1/Groups({groupId})/"); obfuscating resource IDs; and using HTTP
+        methods according to the specification.
+      </p>
+      <p>
+        For demonstration purpose, the "/v1/Students({studentId})/Group"
+        endpoint returns a detailed error message if the student is not found or
+        does not belong to a group. For example, if the student has not joined a
+        group, the response would be:
+      </p>
+      <pre>
+HTTP/1.1 404 Not Found
+Connection: close
+Content-Type: application/json; charset=utf-8
+Date: Thu, 23 Jan 2025 22:31:59 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{
+  "developerMessage": "This student has not joined a group. Check GroupId property to 
+    see if the student has joined a group.",
+  "userMessage": "This student has not joined a group.",
+  "errorCode": "1132",
+  "moreInfo": "http://example.com/errors/1132"
+}</pre
+      >
+      <p>
+        As part of the Odata protocol, the endpoints also support using
+        parameters for select, order, filter, and paging. For example, the GET
+        request to the (unformatted) URL
+      </p>
+      <pre>
+http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby=
+  DateOfBirth&$filter=LastName eq 'Tailor'</pre
+      >
+      <p>will return the response</p>
+      <pre>
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students(DateOfBirth,FirstName,
+    LastName)",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+      "@odata.editLink": "Students(2342506579)",
+      "FirstName": "Mike",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1992-12-01"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506577)",
+      "@odata.editLink": "Students(2342506577)",
+      "FirstName": "Catherin",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "2023-12-01"
+    }
+  ]
+}</pre
+      >
+      <p>
+        For demonstration purpose, the "/v1/Students" endpoint supports
+        conditional GET with the HTTP header pair
+        "Last-Modified"/"If-Modified-Since". For example, if the response for
+        the resource request looks like
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:33:40 GMT
+Server: Kestrel
+Last-Modified: Thu, 23 Jan 2025 22:33:47 GMT
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+...</pre
+      >
+      <p>
+        The response can be cached, and the next request for that resource can
+        have the additional header
+      </p>
+      <pre>If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre>
+      <p>
+        And if the resource is not since modified, the server can response with
+        a code 304 Not Modified, which helps significantly reducing the volume
+        of data needed to be transferred through the network:
+      </p>
+      <pre>
+HTTP/1.1 304 Not Modified
+Connection: close
+Date: Thu, 23 Jan 2025 22:33:47 GMT
+Server: Kestrel</pre
+      >
     </section>
     <section>
       <h2>7. Сonclusion</h2>
@@ -536,7 +905,7 @@
 
     </section>
     <section class="references">
-      <h2>7. References</h2>
+      <h2>8. References</h2>
       <p class="reference" id="r1">
         [1] R. T. Fielding, “Architectural Styles and the Design of
         Network-based Software Architectures,” Ph.D. dissertation, Dept.
@@ -591,6 +960,10 @@
       <p class="reference" id="r9">
         [9] J. Webber, S. Parastatidis, and I. S. Robinson, REST in Practice -
         Hypermedia and Systems Architecture. CA: O’Reilly Media, Inc, 2010.
+      </p>
+      <p class="reference" id="r10">
+        [10] L. Richardson, M. Amundsen and S. Ruby, RESTful Web APIs, CA:
+        O’Reilly Media, Inc, 2013.
       </p>
     </section>
   </body>
