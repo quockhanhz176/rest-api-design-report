@@ -268,18 +268,17 @@ a<!DOCTYPE html>
       <p>
         Whether or not one should version their REST APIs is still a heavily
         debated topic in the developer community as of today
-        <a href="#r10">[10]</a>. Some sources like <a href="#r3">[3]</a> argue
-        that REST APIs don't need versioning thanks to hypermedia. Roy Fielding
-        also agreed with this sentiment, claiming versioning to be an
-        anti-customer practice <a href="#r4">[4]</a>
+        <a href="#r10">[10]</a>. Some sources, such as <a href="#r3">[3]</a>,
+        argue that REST APIs don't need versioning thanks to hypermedia. Roy
+        Fielding also agreed with this sentiment, claiming versioning to be an
+        anti-customer practice <a href="#r4">[4]</a>.
       </p>
       <p>
         B. Mulloy <a href="#r5">[5]</a>, on the other hand, believes that
         developers should "never release an API without a version and make the
         version mandatory". He also recommends prefixing every version with a
         "v", moving it to the left most of the URL path (e.g. /v2/books) and
-        maintaining at least one version before the newest one
-        <a href="#r5">[5]</a>.
+        maintaining at least one version back <a href="#r5">[5]</a>.
       </p>
     </section>
     <section>
@@ -459,12 +458,13 @@ a<!DOCTYPE html>
       <p>
         The purpose of the demonstration project is to create an example REST
         API that is HATEOAS compliant and incorporate into its interface some of
-        the best practices mentioned above.
+        the best practices discussed earlier.
       </p>
       <p>
         The project is created using .NET Core 8.0 and uses the Odata protocol
-        to deliver hypermedia for responses. Figure 6.1 is the Swagger interface
-        shown when it's being run in debug mode (which enables Swagger UI).
+        to deliver hypermedia for responses. Figure 6.1 shows the Swagger
+        interface when the project is run in debug mode (which enables Swagger
+        UI).
       </p>
       <figure>
         <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
@@ -472,13 +472,15 @@ a<!DOCTYPE html>
       </figure>
       <h3>6.1. The demo API</h3>
       <p>
-        The figure 6.1 shows a lot of endpoints, but theoretically, thanks to
-        HATEOAS, the only one the consumers of the API need to know is the root
-        endpoint "/v1", from which they can explore other endpoints available.
-        This exploration pattern bears some resemblance to how a website user
-        can theoretically explore the entire website starting from the home
-        page. By querying the root endpoint, the user can receive back the
-        response:
+        The Swagger interface(figure 6.1) displays multiple endpoints; however,
+        theoretically, thanks to HATEOAS, the only endpoint the consumers of the
+        API need to know is the root endpoint "/v1", from which others can be
+        discovered. This exploration pattern is similar to how a web user can
+        theoretically explore an entire website by just starting from the home
+        page.
+      </p>
+      <p>
+        When querying the root endpoint, the following response is returned:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -507,12 +509,10 @@ OData-Version: 4.0
       >
       <p>
         This response contains the "@odata.context" link "/v1/$metadata" to the
-        machine readable metadata resource that explains the Group and Student
-        entity set. It also contains the links to these 2 resources. The user
-        can then send a request to either of those links to retrieve the
-        representation of the resource, which is in this case, a list. For
-        example, they can send a GET request to the "Groups" link and get back
-        the list of groups:
+        machine readable metadata resource describing the Group and Student
+        entity set and the links to access these resources. The user can then,
+        for example, send a GET request to the "Groups" link to retrieve the
+        list of groups:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -672,7 +672,7 @@ OData-Version: 4.0
         like first and last names, date of birth, email, etc., there is also the
         set of links seen in the list of Group response. At this point, the user
         can choose to view only the first Student using the "@odata.id" link and
-        get back the response, which is a sub-section of the previous one:
+        get back following response, which is a sub-section of the previous one:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -704,13 +704,13 @@ OData-Version: 4.0
 }</pre
       >
       <p>
-        As demonstrated above, by just starting from the initial URL, a consumer
-        has the ability to explore the entire structure of the API thanks to
-        hypermedia.
+        As demonstrated above, by just starting from the initial URL, an API
+        consumer has the ability to explore the entire structure of the API
+        using hypermedia.
       </p>
       <p>
-        Please note that, to make the API response with the full hypermedia, the
-        following header is needed for each request:
+        Please note that, to receive the API responses with the full hypermedia,
+        the following header is needed in each request:
       </p>
       <pre>Accept: application/json;odata.metadata=full</pre>
       <h3>6.2. Design patterns and best practices</h3>
@@ -720,7 +720,7 @@ OData-Version: 4.0
         plural, self-explanatory nouns for resources (Groups and Students);
         having 2 base URLS for each of them (e.g. "/v1/Groups" and
         "/v1/Groups({groupId})/"); obfuscating resource IDs; and using HTTP
-        methods according to specification to perform actions.
+        methods according to the specification.
       </p>
       <p>
         For demonstration purpose, the "/v1/Students({studentId})/Group"
@@ -747,7 +747,7 @@ Transfer-Encoding: chunked
       <p>
         As part of the Odata protocol, the endpoints also support using
         parameters for select, order, filter, and paging. For example, the GET
-        request to the URL
+        request to the (unformatted) URL
       </p>
       <pre>
 http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby=
@@ -799,17 +799,14 @@ OData-Version: 4.0
 ...</pre
       >
       <p>
-        The response can be cached, and the request for that resource next time
-        can have the header
+        The response can be cached, and the next request for that resource can
+        have the additional header
       </p>
-      <pre>
-Accept: application/json;odata.metadata=full 
-If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre
-      >
+      <pre>If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre>
       <p>
         And if the resource is not since modified, the server can response with
-        a code 304 Not Modified, which helps significantly reducing the data
-        volume needed to be transferred through the network:
+        a code 304 Not Modified, which helps significantly reducing the volume
+        of data needed to be transferred through the network:
       </p>
       <pre>
 HTTP/1.1 304 Not Modified
