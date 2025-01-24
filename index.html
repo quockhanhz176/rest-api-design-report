@@ -517,22 +517,23 @@ a<!DOCTYPE html>
       <p>(Quoc Khanh Le)</p>
       <p>
         The purpose of the demonstration project is to create an example REST
-        API that is HATEOAS comliant and incorporate into its interface some of
+        API that is HATEOAS compliant and incorporate into its interface some of
         the best practices mentioned above.
       </p>
       <p>
-        The project is created using .NET Core 8.0. Figure 6.1 is the Swagger
-        interface shown when it's being run in debug mode (which enables Swagger
-        UI).
+        The project is created using .NET Core 8.0 and uses the Odata protocol
+        to deliver hypermedia for responses. Figure 6.1 is the Swagger interface
+        shown when it's being run in debug mode (which enables Swagger UI).
       </p>
       <figure>
         <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
         <figcaption>Figure 6.1: Endpoints produced by Swagger</figcaption>
       </figure>
+      <h3>6.1. The demo API</h3>
       <p>
         The figure 6.1 shows a lot of endpoints, but theoretically, thanks to
         HATEOAS, the only one the consumers of the API need to know is the root
-        endpoint "/v1", from which they can explore other enpoints available.
+        endpoint "/v1", from which they can explore other endpoints available.
         This exploration pattern bears some resemblance to how a website user
         can theoretically explore the entire website starting from the home
         page. By querying the root endpoint, the user can receive back the
@@ -561,16 +562,16 @@ OData-Version: 4.0
       "url": "Students"
     }
   ]
-}
-      </pre>
+}</pre
+      >
       <p>
         This response contains the "@odata.context" link "/v1/$metadata" to the
         machine readable metadata resource that explains the Group and Student
         entity set. It also contains the links to these 2 resources. The user
         can then send a request to either of those links to retrieve the
         representation of the resource, which is in this case, a list. For
-        example, they can send a GET request to "/Groups" and get back the list
-        of groups:
+        example, they can send a GET request to the "Groups" link and get back
+        the list of groups:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -621,20 +622,22 @@ OData-Version: 4.0
         Students"
     }
   ]
-}
-      </pre>
+}</pre
+      >
       <p>
         Inside this response, the user can find the same "@odata.context" link
         but with the "Groups" fragment pointing to the Groups specification (in
         the EntitySet with the same name) inside the metadata resource
-        representation. The other part of the response, the value directory
-        contains the list of Group, each with their own various links, including
-        the "@odata.type" link that specifies the data model, or the "@odata.id"
-        link that points to itself, etc. The user can then choose to find the
-        students in a specific group (for example, the group with the name
-        "Group 1" and the id "") by following the
-        "Students@odata.navigationLink" (which in this case is
-        "http://localhost:5139/v1/Groups(1923003579)/Students"):
+        representation. The other part of the response, the "value" directory
+        contains the list of Group, each with their own various links: the
+        "@odata.id" link that points to the group, the "@odata.editLink" link
+        (which is the same link as the "@odata.id" link) that can be used to
+        edit or delete the group (using the PUT and DELETE methods
+        respectively), the "Students@odata.associationLink" link used to
+        associate or disassociate a group with a student, and the
+        "Students@odata.navigationLink" link used to get the list of students
+        belonging to the group. Following that last link, the user can get the
+        response:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -721,8 +724,158 @@ OData-Version: 4.0
         Group"
     }
   ]
-}
-      </pre>
+}</pre
+      >
+      <p>
+        In this response, for each student, aside from the basic information
+        like first and last names, date of birth, email, etc., there is also the
+        set of links seen in the list of Group response. At this point, the user
+        can choose to view only the first Student using the "@odata.id" link and
+        get back the response, which is a sub-section of the previous one:
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:11:03 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students/$entity",
+  "@odata.type": "#demo_project.Models.Student",
+  "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+  "@odata.editLink": "Students(2342506579)",
+  "Id@odata.type": "#Int64",
+  "Id": 2342506579,
+  "FirstName": "Mike",
+  "LastName": "Tailor",
+  "DateOfBirth@odata.type": "#Date",
+  "DateOfBirth": "1992-12-01",
+  "Email": "mt@random-tu.de",
+  "GroupId@odata.type": "#Int64",
+  "GroupId": 1923003579,
+  "Group@odata.associationLink": "http://localhost:5139/v1/Students(2342506579)
+    /Group/$ref",
+  "Group@odata.navigationLink": "http://localhost:5139/v1/Students(2342506579)
+    /Group"
+}</pre
+      >
+      <p>
+        As demonstrated above, by just starting from the initial URL, a consumer
+        has the ability to explore the entire structure of the API thanks to
+        hypermedia.
+      </p>
+      <p>
+        Please note that, to make the API response with the full hypermedia, the
+        following header is needed for each request:
+      </p>
+      <pre>Accept: application/json;odata.metadata=full</pre>
+      <h3>6.2. Design patterns and best practices</h3>
+      <p>
+        The demo project uses some of the best practices mentioned, such as
+        adding a "v1" version identifier to the root URI; using specific,
+        plural, self-explanatory nouns for resources (Groups and Students);
+        having 2 base URLS for each of them (e.g. "/v1/Groups" and
+        "/v1/Groups({groupId})/"); obfuscating resource IDs; and using HTTP
+        methods according to specification to perform actions.
+      </p>
+      <p>
+        For demonstration purpose, the "/v1/Students({studentId})/Group"
+        endpoint returns a detailed error message if the student is not found or
+        does not belong to a group. For example, if the student has not joined a
+        group, the response would be:
+      </p>
+      <pre>
+HTTP/1.1 404 Not Found
+Connection: close
+Content-Type: application/json; charset=utf-8
+Date: Thu, 23 Jan 2025 22:31:59 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{
+  "developerMessage": "This student has not joined a group. Check GroupId property to 
+    see if the student has joined a group.",
+  "userMessage": "This student has not joined a group.",
+  "errorCode": "1132",
+  "moreInfo": "http://example.com/errors/1132"
+}</pre
+      >
+      <p>
+        As part of the Odata protocol, the endpoints also support using
+        parameters for select, order, filter, and paging. For example, the GET
+        request to the URL
+      </p>
+      <pre>
+http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby=
+  DateOfBirth&$filter=LastName eq 'Tailor'</pre
+      >
+      <p>will return the response</p>
+      <pre>
+{
+  "@odata.context": "http://localhost:5139/v1/$metadata#Students(DateOfBirth,FirstName,
+    LastName)",
+  "value": [
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506579)",
+      "@odata.editLink": "Students(2342506579)",
+      "FirstName": "Mike",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "1992-12-01"
+    },
+    {
+      "@odata.type": "#demo_project.Models.Student",
+      "@odata.id": "http://localhost:5139/v1/Students(2342506577)",
+      "@odata.editLink": "Students(2342506577)",
+      "FirstName": "Catherin",
+      "LastName": "Tailor",
+      "DateOfBirth@odata.type": "#Date",
+      "DateOfBirth": "2023-12-01"
+    }
+  ]
+}</pre
+      >
+      <p>
+        For demonstration purpose, the "/v1/Students" endpoint supports
+        conditional GET with the HTTP header pair
+        "Last-Modified"/"If-Modified-Since". For example, if the response for
+        the resource request looks like
+      </p>
+      <pre>
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; odata.metadata=full; odata.streaming=true; charset=utf-8
+Date: Thu, 23 Jan 2025 22:33:40 GMT
+Server: Kestrel
+Last-Modified: Thu, 23 Jan 2025 22:33:47 GMT
+Transfer-Encoding: chunked
+OData-Version: 4.0
+
+...</pre
+      >
+      <p>
+        The response can be cached, and the request for that resource next time
+        can have the header
+      </p>
+      <pre>
+Accept: application/json;odata.metadata=full 
+If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre
+      >
+      <p>
+        And if the resource is not since modified, the server can response with
+        a code 304 Not Modified, which helps significantly reducing the data
+        volume needed to be transferred through the network:
+      </p>
+      <pre>
+HTTP/1.1 304 Not Modified
+Connection: close
+Date: Thu, 23 Jan 2025 22:33:47 GMT
+Server: Kestrel</pre
+      >
     </section>
     <section>
       <h2>7. Сonclusion</h2>
