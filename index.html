@@ -77,54 +77,8 @@
       </p>
     </section>
     <section>
-      <h2>2. History</h2>
-      <p>(Quoc Khanh Le)</p>
-      <p>
-        In late 1993, the usage of the web expanded beyond researchers to
-        include small research groups, clubs, individuals, and institutional
-        departments<a href="#r1">[1]</a>. This expansion included homepages
-        created by standalone users to share information of their choice, as
-        well as homepages maintained by businesses to broadcast their products
-        and services to international audiences <a href="#r1">[1]</a>. Roy
-        Fielding <a href="#r1">[1]</a> described the situation at the time: "The
-        Internet developer community became concerned that the rapid growth in
-        the Web’s usage ... would quickly outpace the capacity of the Internet
-        infrastructure and lead to a general collapse." After further
-        inspection, he discovered a set of key constraints that would naturally
-        facilitate the web's scalability <a href="#r2">[2]</a>. In 2000, in his
-        Ph.D. dissertation, Fielding named the architectural style built upon
-        these constraints "Representational State Transfer" (REST)
-        <a href="#r2">[2]</a>.
-      </p>
-    </section>
-    <section>
-      <h2>3. REST API Characteristics</h2>
-      <h3>3.1. Elements</h3>
-      <p>(Quoc Khanh Le)</p>
-      <p>
-        REST data elements include the resources, which is the target of the
-        links inside hypermedia; the resource identifiers, such as URI; the
-        resource representations, such as JSON or XML; the representation
-        metadata, such as the HTTP "Content-Type" header; the resource metadata,
-        such as link relations like source link or alternate link; and the
-        control data, such as the HTTP "Accept" header <a href="#r1">[1]</a>.
-      </p>
-      <p>
-        REST connectors include the client and the server connectors, such as
-        the library "libwww"; the caches, such as browser cache or cache server;
-        the resolvers, such as the DNS look up library "Bind9"; and the tunnels,
-        such as those formed by TLS handshakes <a href="#r1">[1]</a>.
-      </p>
-      <p>
-        REST components include the origin servers, such as a Kestrel or IIS
-        server; the gateways, such as a reverse proxy; the proxies, such as a
-        CERN proxy; and the user agents, such as a web browser or a web crawler
-        <a href="#r1">[1]</a>.
-      </p>
-    </section>
-    <section>
-      <h3>3.2 Constraints</h3>
-      <h4>3.2.1 Client-Server</h4>
+      <h2>2. REST API Constraints</h2>
+      <h4>2.1 Client-Server</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
         The client-server paradigm remains a foundational principle of REST architecture, ensuring robust 
@@ -159,7 +113,7 @@
       </p>
     </section>
     <section>
-      <h4>3.2.2 Stateless</h4>
+      <h4>2.2 Stateless</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
         Statelessness is a cornerstone of the REST architectural style, mandating that each client 
@@ -189,7 +143,7 @@
       </p>
     </section>
     <section>
-      <h4>3.2.3 Cache</h4>
+      <h4>2.3 Cache</h4>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
         Caching serves as a vital optimization technique in RESTful systems, aimed at improving performance, 
@@ -228,7 +182,7 @@
       </p>    
     </section>
     <section>
-      <h4>3.2.4 Uniform interface</h4>
+      <h4>2.4 Uniform interface</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
         Uniform interface is the major constraint that set the REST API
@@ -252,7 +206,7 @@
         this sense, is a pointer to a set of entities, and not any specific
         entity at any point in time <a href="#r1">[1]</a>.
       </p>
-      <h5>3.2.4.1 Identification of resources</h5>
+      <h5>2.4.1 Identification of resources</h5>
       <p>(Quoc Khanh Le)</p>
       <p>
         A resource identifier uniquely identifies a resource in an interaction
@@ -260,7 +214,7 @@
         to manipulate the value of the resource, regardless of the backing
         implementation of this manipulation <a href="#r1">[1]</a>.
       </p>
-      <h5>3.2.4.2 Manipulation of resources through representations</h5>
+      <h5>2.4.2 Manipulation of resources through representations</h5>
       <p>(Quoc Khanh Le)</p>
       <p>
         The manipulation of a resource is done through a representation, which
@@ -269,7 +223,7 @@
         targeted state of a resource when being transferred between components
         <a href="#r1">[1]</a>
       </p>
-      <h5>3.2.4.3 Self-descriptive messages</h5>
+      <h5>2.4.3 Self-descriptive messages</h5>
       <p>(Quoc Khanh Le)</p>
       <p>
         The self-descriptive messages constraint requires that no states are
@@ -279,7 +233,7 @@
         cacheability communicated in responses
         <a href="#r1">[1]</a>.
       </p>
-      <h5>3.2.4.4 Hypermedia as the engine of application state (HATEOAS)</h5>
+      <h5>2.4.4 Hypermedia as the engine of application state (HATEOAS)</h5>
       <p>(Quoc Khanh Le)</p>
       <p>
         The core idea of HATEOAS is that the client does not need to have prior
@@ -289,7 +243,7 @@
       </p>
     </section>
     <section>
-      <h4>3.2.5 Layered system</h4>
+      <h4>2.5 Layered system</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
         The layered system constraint requires the components to only know of
@@ -312,7 +266,7 @@
       </p>
     </section>
     <section>
-      <h4>3.2.6 Code on demand</h4>
+      <h4>2.6 Code on demand</h4>
       <p>(Quoc Khanh Le)</p>
       <p>
         The code on demand constraint allows the server to send executable code
@@ -331,9 +285,9 @@
       </p>
     </section>
     <section>
-      <h2>4. Design patterns and best practices</h2>
+      <h2>3. Design patterns and best practices</h2>
       <p>(Quoc Khanh Le)</p>
-      <h3>4.1 Versioning</h3>
+      <h3>3.1 Versioning</h3>
       <p>
         Whether or not one should version their REST APIs is still a heavily
         debated topic in the developer community as of today
@@ -351,7 +305,7 @@
       </p>
     </section>
     <section>
-      <h3>4.2 Description of resources</h3>
+      <h3>3.2 Description of resources</h3>
       <p>
         Nouns should be used for resource names <a href="#r3">[3]</a>,
         <a href="#r5">[5]</a>, as they represent resources to be accessed and
@@ -376,7 +330,7 @@
       </p>
     </section>
     <section>
-      <h3>4.3 Identification of resources</h3>
+      <h3>3.3 Identification of resources</h3>
       <p>
         URI should be self explanatory to the best of its ability
         <a href="#r5">[5]</a>. For every resource, there should be generally 2
@@ -391,7 +345,7 @@
       </p>
     </section>
     <section>
-      <h3>4.4 Error handling</h3>
+      <h3>3.4 Error handling</h3>
       <p>
         The number of HTTP status codes produced by the API should be limited to
         8 or lower to alleviate client developers' cognitive load and allow them
@@ -421,7 +375,7 @@
       >
     </section>
     <section>
-      <h3>4.5 Parameter usage</h3>
+      <h3>3.5 Parameter usage</h3>
       <p>
         Parameters should be used for filtering, sorting, selecting and paging
         of resources <a href="#r3">[3]</a>. Followed are some examples:
@@ -439,7 +393,7 @@
       >
     </section>
     <section>
-      <h3>4.6 Interaction with resources</h3>
+      <h3>3.6 Interaction with resources</h3>
       <p>
         HTTP methods should conform with their semantics as defined by the HTTP
         specification <a href="#r5">[5]</a>, <a href="#r8">[8]</a>. Generally,
@@ -465,7 +419,7 @@
       </p>
     </section>
     <section>
-      <h3>4.7 Support mime types</h3>
+      <h3>3.7 Support mime types</h3>
       <p>
         B. Mulloy <a href="#r5">[5]</a> suggests that at least 2 MIME types
         should be supported, especially when receiving data. Among them, the
@@ -484,7 +438,7 @@
       </p>
     </section>
     <section>
-      <h2>5. REST API's in semantic web domain</h2>
+      <h2>4. REST API's in semantic web domain</h2>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
         REST APIs are integral to the functionality of the semantic web, acting as a bridge that enables 
@@ -518,7 +472,7 @@
       </p>
     </section>
     <section>
-      <h2>6. Demonstration</h2>
+      <h2>5. Demonstration</h2>
       <p>(Quoc Khanh Le)</p>
       <p>
         The purpose of the demonstration project is to create an example REST
@@ -535,7 +489,7 @@
         <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
         <figcaption>Figure 6.1: Endpoints produced by Swagger</figcaption>
       </figure>
-      <h3>6.1. The demo API</h3>
+      <h3>5.1. The demo API</h3>
       <p>
         The Swagger interface(figure 6.1) displays multiple endpoints; however,
         theoretically, thanks to HATEOAS, the only endpoint the consumers of the
@@ -778,7 +732,7 @@ OData-Version: 4.0
         the following header is needed in each request:
       </p>
       <pre>Accept: application/json;odata.metadata=full</pre>
-      <h3>6.2. Design patterns and best practices</h3>
+      <h3>5.2. Design patterns and best practices</h3>
       <p>
         The demo project uses some of the best practices mentioned, such as
         adding a "v1" version identifier to the root URI; using specific,
@@ -881,7 +835,7 @@ Server: Kestrel</pre
       >
     </section>
     <section>
-      <h2>7. Сonclusion</h2>
+      <h2>6. Сonclusion</h2>
       <p>(Georgiy Sinokhchyan)</p>
       <p>
         REST API design has emerged as a fundamental paradigm for building scalable, maintainable, 
@@ -910,7 +864,7 @@ Server: Kestrel</pre
       </p>
     </section>
     <section class="references">
-      <h2>8. References</h2>
+      <h2>7. References</h2>
       <p class="reference" id="r1">
         [1] R. T. Fielding, “Architectural Styles and the Design of
         Network-based Software Architectures,” Ph.D. dissertation, Dept.
