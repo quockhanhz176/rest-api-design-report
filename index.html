@@ -175,48 +175,48 @@
       </p>    
     </section>
     <section>
-      <h3>2.4 Uniform interface</h3>
+      <h3>2.4 Uniform Interface</h3>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
-        Uniform interface is the major constraint that set the REST API
+        Uniform interface is the major constraint that sets the REST API
         architectural style apart from other network-based API styles
-        <a href="#r1">[1]</a>. It requires that the outward facing interface of
-        a service remains general, which promotes independence between the
+        <a href="#r1">[1]</a>. It requires that the outward-facing interface of
+        a service remains standardized, promoting independence between the
         interface and the implementation of a service <a href="#r1">[1]</a>.
         This independence allows for decoupled evolvability, but has the
         drawback of introducing loss of efficiency because the information
-        transferred needs to be in the general, standardized form and not one
-        optimized for the application's needs <a href="#r1">[1]</a>. There are
-        four sub constraints that need to be fulfilled to satisfy the uniform
-        interface constraint: identification of resources, manipulation of
-        resources through representations, self-descriptive messages, and hyper
-        media as the engine of application state <a href="#r1">[1]</a>.
+        transferred needs to be in a general, standardized format and not one
+        optimized for the application's needs <a href="#r1">[1]</a>. To satisfy 
+        the uniform interface constraint, four sub-constraints need to be 
+        fulfilled: identification of resources, manipulation of resources through 
+        representations, self-descriptive messages, and hypermedia as the engine 
+        of application state <a href="#r1">[1]</a>.
       </p>
       <p>
-        Resources are defined by Roy Fielding <a href="#r1">[1]</a> as "any
+        The resources mentioned are defined by Roy Fielding <a href="#r1">[1]</a> as "any
         information that can be named": a document/ an image, a time-dependent
         service, a collection of other resources, an object, etc. A resource, in
         this sense, is a pointer to a set of entities, and not any specific
         entity at any point in time <a href="#r1">[1]</a>.
       </p>
-      <h4>2.4.1 Identification of resources</h4>
+      <h4>2.4.1 Identification of Resources</h4>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         A resource identifier uniquely identifies a resource in an interaction
-        between components, and can be used in combination with REST connectors
+        between components and can be used in combination with REST connectors
         to manipulate the value of the resource, regardless of the backing
         implementation of this manipulation <a href="#r1">[1]</a>.
       </p>
-      <h4>2.4.2 Manipulation of resources through representations</h4>
+      <h4>2.4.2 Manipulation of Resources Through Representations</h4>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The manipulation of a resource is done through a representation, which
         is a byte sequence and the metadata that describes those bytes
-        <a href="#r1">[1]</a>. A representation represents the contemporary or
+        <a href="#r1">[1]</a>. The representation represents the contemporary or
         targeted state of a resource when being transferred between components
         <a href="#r1">[1]</a>
       </p>
-      <h4>2.4.3 Self-descriptive messages</h4>
+      <h4>2.4.3 Self-Descriptive Messages</h4>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The self-descriptive messages constraint requires that no states are
@@ -226,17 +226,17 @@
         cacheability communicated in responses
         <a href="#r1">[1]</a>.
       </p>
-      <h4>2.4.4 Hypermedia as the engine of application state (HATEOAS)</h4>
+      <h4>2.4.4 Hypermedia as The Engine of Application State (HATEOAS)</h4>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The core idea of HATEOAS is that the client does not need to have prior
-        knowledge of the APIs structure to interact with it. To achieve this,
-        the responses need to contain links to other resources to guide the
+        knowledge of the API's structure to interact with it. To achieve this,
+        the responses need to contain links to other resources that guide the
         client to other actions based on the current application state.
       </p>
     </section>
     <section>
-      <h3>2.5 Layered system</h3>
+      <h3>2.5 Layered System</h3>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The layered system constraint requires the components to only know of
@@ -259,10 +259,10 @@
       </p>
     </section>
     <section>
-      <h3>2.6 Code on demand</h3>
+      <h3>2.6 Code-On-Demand</h3>
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
-        The code on demand constraint allows the server to send executable code
+        The code-on-demand constraint allows the server to send executable code
         to the clients, effectively enabling the extension of client
         functionality after deployment <a href="#r1">[1]</a>. This capability,
         nonetheless, reduces the visibility of the interaction, as it can be
@@ -272,13 +272,13 @@
       <p>
         This constraint is the only optional constraint in REST because APIs
         following the REST architectural style can choose to implement it or not
-        (or restricting its availability to a range of clients) and therefore
+        (or to restrict its availability to a range of clients) and therefore
         only reap the benefits and suffer the drawbacks accordingly
         <a href="#r1">[1]</a>.
       </p>
     </section>
     <section>
-      <h2>3. Design patterns and best practices</h2>
+      <h2>3. Design Patterns and Best Practices</h2>
       <p class="credit">(Quoc Khanh Le)</p>
       <h3>3.1 Versioning</h3>
       <p>
@@ -293,66 +293,66 @@
         B. Mulloy <a href="#r5">[5]</a>, on the other hand, believes that
         developers should "never release an API without a version and make the
         version mandatory". He also recommends prefixing every version with a
-        "v", moving it to the left most of the URL path (e.g. /v2/books) and
+        "v", moving it to the leftmost of the URL path (e.g. /v2/books) and
         maintaining at least one version back <a href="#r5">[5]</a>.
       </p>
     </section>
     <section>
-      <h3>3.2 Description of resources</h3>
+      <h3>3.2 Description of Resources</h3>
       <p>
         Nouns should be used for resource names <a href="#r3">[3]</a>,
         <a href="#r5">[5]</a>, as they represent resources to be accessed and
-        manipulated, rather than actions to be performed. Instead, in the
-        context of HTTP APIs, HTTP verbs should be used to indicate the
-        intentions of the clients <a href="#r5">[5]</a>.
+        manipulated, rather than actions to be performed. In the
+        context of HTTP APIs, intentions of the clients should be indicated by 
+        the HTTP verbs, not embedded in the URLs themselves <a href="#r5">[5]</a>.
       </p>
       <p>
-        To ensure consistency and predictability, plural and singular forms
-        should not be mixed when naming resources <a href="#r3">[3]</a>.
+        Additionally, to ensure consistency and predictability, it's important to avoid 
+        mixing plural and singular forms when naming resources <a href="#r3">[3]</a>.
       </p>
       <p>
-        Adhering to JavaScript naming conventions is recommended
+        Adhering to JavaScript naming conventions is also recommended
         <a href="#r5">[5]</a> since JSON is currently the most used data format
         for transferring data between clients and servers <a href="#r3">[3]</a>.
       </p>
       <p>
-        Names of resources should be specific to aid client developers in API
-        comprehension and utilisation <a href="#r5">[5]</a>. For example,
+        Finally, the names of resources should be specific to aid client developers in API
+        comprehension and utilization <a href="#r5">[5]</a>. For example,
         descriptive endpoints such as /blogs, /videos, /news, etc. are
-        preferable to generic one such as /items <a href="#r5">[5]</a>.
+        preferable to generic ones such as /items <a href="#r5">[5]</a>.
       </p>
     </section>
     <section>
-      <h3>3.3 Identification of resources</h3>
+      <h3>3.3 Identification of Resources</h3>
       <p>
-        URI should be self explanatory to the best of its ability
+        URI should be self-explanatory to the best of its ability
         <a href="#r5">[5]</a>. For every resource, there should be generally 2
         base URLs: one for accessing/manipulating the list and the other for
         accessing/manipulating a specific item in the list (for example, /books
         and /books/393) <a href="#r5">[5]</a>.
       </p>
       <p>
-        In case there are no security measures in place, the URIs should not
-        reference the resource directly
+        On top of that, if there are no security measures in place, the URIs should 
+        avoid directly referencing the resources
         <a href="#r3">[3]</a>, <a href="#r6">[6]</a>.
       </p>
     </section>
     <section>
-      <h3>3.4 Error handling</h3>
+      <h3>3.4 Error Handling</h3>
       <p>
         The number of HTTP status codes produced by the API should be limited to
-        8 or lower to alleviate client developers' cognitive load and allow them
+        eight or fewer to reduce client developers' cognitive load and allow them
         to focus on the implementation of functionalities
         <a href="#r5">[5]</a>. The use of HTTP status codes also should align
         with the guidelines outlined in the HTTP specification
         <a href="#r7">[7]</a>, <a href="#r8">[8]</a>.
       </p>
       <p>
-        Error messages returned from the API should be verbose
+        Furthermore, error messages returned from the API should be verbose
         <a href="#r5">[5]</a>. B. Mulloy <a href="#r5">[5]</a> recommends
         returning a message for the developer detailing how to fix the error, a
-        message for the end user to be displayed, an application error code for
-        code handling and a link to further explanation of the error. For
+        user-friendly message to be displayed, an application error code for
+        code handling and a link for further explanation of the error. For
         example, the following response can be returned when a device with an
         invalid device ID is requested by a client:
       </p>
@@ -368,7 +368,7 @@
       >
     </section>
     <section>
-      <h3>3.5 Parameter usage</h3>
+      <h3>3.5 Parameter Usage</h3>
       <p>
         Parameters should be used for filtering, sorting, selecting and paging
         of resources <a href="#r3">[3]</a>. Followed are some examples:
@@ -386,52 +386,53 @@
       >
     </section>
     <section>
-      <h3>3.6 Interaction with resources</h3>
+      <h3>3.6 Interaction With Resources</h3>
       <p>
         HTTP methods should conform with their semantics as defined by the HTTP
         specification <a href="#r5">[5]</a>, <a href="#r8">[8]</a>. Generally,
         POST, GET, PUT, and DELETE should be used to perform the CRUD actions
-        (Create, Read, Update, Delete) in that respective order
+        (Create, Read, Update, Delete, in that respective order)
         <a href="#r8">[8]</a>.
       </p>
       <p>
-        For any resource, if the list of methods allowed is not made available
-        to the consumers, the HTTP OPTIONS verb should be supported to avoid the
-        transmission of high-volume data when a client tries to use an
-        unsupported verb <a href="#r3">[3]</a>.
+        For any resource, if the list of methods allowed is not provided
+        to the consumers, the HTTP OPTIONS verb should be supported 
+        <a href="#r3">[3]</a>. This helps avoid the scenario where
+        a client attempts to use an unsupported verb, resulting in the transmission 
+        of unnecessary data <a href="#r3">[3]</a>.
       </p>
       <p>
-        To leverage caching, conditional GET should be implemented
-        <a href="#r7">[7]</a>. HTTP has 2 built-in mechanisms for this purpose:
-        the header pairs "Last-Modified"/"If-Modified-Since" and
+        Moreover, to leverage caching, conditional GET should be implemented
+        <a href="#r7">[7]</a>. HTTP has two built-in mechanisms for this purpose:
+        the two header pairs "Last-Modified"/"If-Modified-Since" and
         "Etag"/"If-None-Match", with the latter avoiding the "one-second window"
-        change problem of the former <a href="#r7">[7]</a>. Specifically, due to
-        the one-second granularity of the "If-Modified-Since" header, when 2
+        change problem of the former <a href="#r7">[7]</a>. More specifically, due to
+        the one-second granularity of the "If-Modified-Since" header, when two
         changes occur within one second, the clients that have cached the first
-        representation cannot detect the second change <a href="#r7">[7]</a>.
+        representation will not be able to detect the second change <a href="#r7">[7]</a>.
       </p>
     </section>
     <section>
-      <h3>3.7 Support mime types</h3>
+      <h3>3.7 Support Mime Types</h3>
       <p>
         B. Mulloy <a href="#r5">[5]</a> suggests that at least 2 MIME types
-        should be supported, especially when receiving data. Among them, the
+        should be supported, particularly when the server is receiving data. Among them, the
         default representation format should be JSON because it's more universal
         and less verbose than XML <a href="#r5">[5]</a>.
       </p>
       <p>
-        To accommodate hypermedia, existing MIME types such as Collection+JSON
-        or HAL+XML are recommended <a href="#r3">[3]</a>.
+        To accommodate hypermedia, it is recommended to use existing MIME types such 
+        as Collection+JSON or HAL+XML <a href="#r3">[3]</a>.
       </p>
       <p>
         The API should also support content negotiation, typically through the
         use of the HTTP header "Accept" to indicate the MIME types and,
-        optionally, the preference or weight of each option
+        optionally, their preference or weight
         <a href="#r3">[3]</a>.
       </p>
     </section>
     <section>
-      <h2>4. REST API's in semantic web domain</h2>
+      <h2>4. REST APIs in Semantic Web Domain</h2>
       <p class="credit">(Georgiy Sinokhchyan)</p>
       <p>
         REST APIs are integral to the functionality of the semantic web, acting as a bridge that enables 
@@ -482,17 +483,17 @@
         <img src="f-06-01-endpoints.png" alt="Endpoints produced by Swagger" />
         <figcaption>Figure 6.1: Endpoints produced by Swagger</figcaption>
       </figure>
-      <h3>5.1. The demo API</h3>
+      <h3>5.1. The Demo API</h3>
       <p>
-        The Swagger interface (figure 6.1) displays multiple endpoints; however,
+        The Swagger interface (figure 6.1) displays multiple endpoints. However,
         theoretically, thanks to HATEOAS, the only endpoint the consumers of the
         API need to know is the root endpoint "/v1", from which others can be
         discovered. This exploration pattern is similar to how a web user can
-        theoretically explore an entire website by just starting from the home
+        theoretically explore an entire website, starting from just the home
         page.
       </p>
       <p>
-        When querying the root endpoint, the following response is returned:
+        When a hypothetical user queries the root endpoint, the following response is returned:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -520,9 +521,9 @@ OData-Version: 4.0
 }</pre
       >
       <p>
-        This response contains the "@odata.context" link "/v1/$metadata" to the
-        machine readable metadata resource describing the Group and Student
-        entity set and the links to access these resources. The user can then,
+        This response contains the "@odata.context" link "/v1/$metadata" that points to a
+        machine-readable metadata resource describing the Group and Student
+        entity set, as well as the links to access these resources. The user can then,
         for example, send a GET request to the "Groups" link to retrieve the
         list of groups:
       </p>
@@ -579,10 +580,9 @@ OData-Version: 4.0
       >
       <p>
         Inside this response, the user can find the same "@odata.context" link
-        but with the "Groups" fragment pointing to the Groups specification (in
-        the EntitySet with the same name) inside the metadata resource
+        but with the "Groups" fragment pointing to the Groups specification inside the metadata resource
         representation. The other part of the response, the "value" directory
-        contains the list of Group, each with their own various links: the
+        contains the list of Groups, each with its own various links: the
         "@odata.id" link that points to the group, the "@odata.editLink" link
         (which is the same link as the "@odata.id" link) that can be used to
         edit or delete the group (using the PUT and DELETE methods
@@ -679,10 +679,10 @@ OData-Version: 4.0
       >
       <p>
         In this response, for each student, aside from the basic information
-        like first and last names, date of birth, email, etc., there is also the
-        set of links seen in the list of Group response. At this point, the user
-        can choose to view only the first Student using the "@odata.id" link and
-        get back following response, which is a sub-section of the previous one:
+        like first and last names, date of birth, etc., there is also a
+        set of links similar to those seen in the earlier Group list response. 
+        At this point, the user can choose to view only the first Student using the "@odata.id" link and
+        get back the following response, which is a sub-section of the previous one:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -719,21 +719,21 @@ OData-Version: 4.0
         using hypermedia.
       </p>
       <p>
-        Please note that, to receive the API responses with the full hypermedia,
+        Please note that in order to receive the API responses with the full hypermedia,
         the following header is needed in each request:
       </p>
       <pre>Accept: application/json;odata.metadata=full</pre>
-      <h3>5.2. Design patterns and best practices</h3>
+      <h3>5.2. Design Patterns and Best Practices</h3>
       <p>
         The demo project uses some of the best practices mentioned, such as
         adding a "v1" version identifier to the root URI; using specific,
         plural, self-explanatory nouns for resources (Groups and Students);
-        having 2 base URLS for each of them (e.g. "/v1/Groups" and
+        having 2 base URLs for each of them (e.g. "/v1/Groups" and
         "/v1/Groups({groupId})/"); obfuscating resource IDs; and using HTTP
         methods according to the specification.
       </p>
       <p>
-        For demonstration purpose, the "/v1/Students({studentId})/Group"
+        For demonstration purposes, the "/v1/Students({studentId})/Group"
         endpoint returns a detailed error message if the student is not found or
         does not belong to a group. For example, if the student has not joined a
         group, the response would be:
@@ -756,14 +756,14 @@ Transfer-Encoding: chunked
       >
       <p>
         As part of the Odata protocol, the endpoints also support using
-        parameters for select, order, filter, and paging. For example, the GET
+        parameters for selection, ordering, filtering, and paging. For example, the GET
         request to the (unformatted) URL
       </p>
       <pre>
 http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby=
   DateOfBirth&$filter=LastName eq 'Tailor'</pre
       >
-      <p>will return the response</p>
+      <p>will return the response:</p>
       <pre>
 {
   "@odata.context": "http://localhost:5139/v1/$metadata#Students(DateOfBirth,FirstName,
@@ -791,10 +791,10 @@ http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby
 }</pre
       >
       <p>
-        For demonstration purpose, the "/v1/Students" endpoint supports
+        For demonstration purposes, the "/v1/Students" endpoint supports
         conditional GET with the HTTP header pair
         "Last-Modified"/"If-Modified-Since". For example, if the response for
-        the resource request looks like
+        the resource request looks like this:
       </p>
       <pre>
 HTTP/1.1 200 OK
@@ -809,14 +809,14 @@ OData-Version: 4.0
 ...</pre
       >
       <p>
-        The response can be cached, and the next request for that resource can
-        have the additional header
+        The response can then be cached, and the next request for that resource can
+        include the additional header:
       </p>
       <pre>If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre>
       <p>
-        And if the resource is not since modified, the server can response with
-        a code 304 Not Modified, which helps significantly reducing the volume
-        of data needed to be transferred through the network:
+        After all that, if the resource is not modified since that timestamp, the server can respond with
+        a 304 Not Modified status code, which significantly reduces the volume
+        of data needed to be transferred over the network:
       </p>
       <pre>
 HTTP/1.1 304 Not Modified
