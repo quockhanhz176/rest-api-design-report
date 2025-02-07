@@ -182,7 +182,7 @@
         architectural style apart from other network-based API styles
         <a href="#r1">[1]</a>. It requires that the outward-facing interface of
         a service remains standardized, promoting independence between the
-        interface and the implementation of a service <a href="#r1">[1]</a>.
+        interface and the implementation of the service behind it <a href="#r1">[1]</a>.
         This independence allows for decoupled evolvability, but has the
         drawback of introducing loss of efficiency because the information
         transferred needs to be in a general, standardized format and not one
@@ -220,9 +220,9 @@
       <p class="credit">(Quoc Khanh Le)</p>
       <p>
         The self-descriptive messages constraint requires that no states are
-        transferred between requests, in other words, the messages should
-        contain all of the required information to process it, including the
-        semantics indicated through media types and standard methods,
+        transferred between requests <a href="#r1">[1]</a>. In other words, the messages should
+        contain all of the information required to process them, including the
+        semantics indicated through media types and standard methods, and the
         cacheability communicated in responses
         <a href="#r1">[1]</a>.
       </p>
@@ -763,7 +763,11 @@ Transfer-Encoding: chunked
 http://localhost:5139/v1/Students?$select=DateOfBirth,FirstName,LastName&orderby=
   DateOfBirth&$filter=LastName eq 'Tailor'</pre
       >
-      <p>will return the response:</p>
+      <p>
+        will return the following response, which only contains Students whose last 
+        names are 'Tailor', ordered by their date of birth (from past to present), and 
+        without their IDs, emails or group information:
+      </p>
       <pre>
 {
   "@odata.context": "http://localhost:5139/v1/$metadata#Students(DateOfBirth,FirstName,
@@ -814,7 +818,7 @@ OData-Version: 4.0
       </p>
       <pre>If-Modified-Since: Thu, 23 Jan 2025 22:33:47 GMT</pre>
       <p>
-        After all that, if the resource is not modified since that timestamp, the server can respond with
+        Then, if the resource is not modified since that timestamp, the server can respond with
         a 304 Not Modified status code, which significantly reduces the volume
         of data needed to be transferred over the network:
       </p>
